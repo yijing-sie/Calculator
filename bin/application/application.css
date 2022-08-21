@@ -1,0 +1,24 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.buttontheme {
+	-fx-pref-width: 80px;
+	-fx-pref-height: 80px;
+	-fx-background-color: rgb(45, 45, 45);
+	-fx-focus-color: blue;
+	-fx-shadow-highlight-color: blue;
+	-fx-text-fill: white;	
+	-fx-font-size: 24;	
+}
+.vboxtheme {
+	-fx-spacing: 10px;	
+	-fx-min-width: 300px;
+	-fx-background-color: #ffffff;
+	-fx-padding: 10px;
+}
+.hboxtheme {
+	-fx-spacing: 10px;
+}
+.textfieldtheme {
+	-fx-background-color: #444444;
+	-fx-text-fill: white;
+	-fx-font-size: 24;
+}
