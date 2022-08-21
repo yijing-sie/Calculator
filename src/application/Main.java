@@ -19,6 +19,7 @@ public class Main extends Application {
 	private int max_len = 16;
 	private char[] ops1 = {'/', '*'};
 	private char[] ops2 = {'+', '-'};
+	private char[] nums = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 	public boolean match1(char input) {
 		for (char op : ops1) {
 			if (input == op) {
@@ -55,8 +56,16 @@ public class Main extends Application {
 			return num1 - num2;
 		}
 	}	
-	
-	String update(char[] char_eq, int i) {
+	public boolean is_num(char c) {
+		for(char n: nums) {
+			if (c == n) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String update(char[] char_eq, int i) {
 		char op = char_eq[i];
 		int start = i - 1;
 		String string_eq = String.valueOf(char_eq); 
@@ -221,14 +230,16 @@ public class Main extends Application {
 			root.getChildren().add(hp0m);
 			root.getChildren().add(hdemul);
 			root.getChildren().add(textField);
-						
+			
 			// 3) Write event handling
 
 			EventHandler<ActionEvent> optHandler = new EventHandler<ActionEvent>() {
 				@Override
 				public void handle( ActionEvent ae ) {
 					Button btn = (Button)ae.getSource();
-					if (start) {
+					char[] text_char = textField.getText().toCharArray();
+
+					if (is_num(text_char[text_char.length - 1])) {
 						String previous1 = textField.getText();
 						textField.setText(previous1 + btn.getText());
 						clear = false;
