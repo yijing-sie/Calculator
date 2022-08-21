@@ -20,6 +20,8 @@ public class Main extends Application {
 	private char[] ops1 = {'/', '*'};
 	private char[] ops2 = {'+', '-'};
 	private char[] nums = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+
+	/* This function checks if input matches '*' or '/' */
 	public boolean match1(char input) {
 		for (char op : ops1) {
 			if (input == op) {
@@ -29,6 +31,7 @@ public class Main extends Application {
 		return false;
 	}
 
+	/* This function checks if input matches '+' or '-' */
 	public boolean match2(char input) {
 		for (char op : ops2) {
 			if (input == op) {
@@ -38,6 +41,7 @@ public class Main extends Application {
 		return false;
 	}	
 
+	/* This fuction operates '*' or '/' on num1 and num2 based on op */
 	public double operate1(double num1, double num2, char op) {
 		if (op == '*') {
 			return num1 * num2;
@@ -48,6 +52,7 @@ public class Main extends Application {
 
 	}
 
+	/* This fuction operates '+' or '-' on num1 and num2 based on op */
 	public double operate2(double num1, double num2, char op) {
 		if (op == '+') {
 			return num1 + num2;
@@ -56,6 +61,8 @@ public class Main extends Application {
 			return num1 - num2;
 		}
 	}	
+
+	/* This fuction checks if input c is a digit */
 	public boolean is_num(char c) {
 		for(char n: nums) {
 			if (c == n) {
@@ -64,7 +71,14 @@ public class Main extends Application {
 		}
 		return false;
 	}
-
+	/** 
+	 * This function performs '*' or '/' operation over the numbers before and after the symbol, and returns a new String
+	 * that replaces the operation with the result  
+	 * 
+	 * @param char_eq The equation stored as char[] for evaluation
+	 * @param i The index at which '*' or '/' is for evaluation
+	 * @return A new string after performing the operation at index i
+	 * **/
 	public String update(char[] char_eq, int i) {
 		char op = char_eq[i];
 		int start = i - 1;
@@ -94,6 +108,10 @@ public class Main extends Application {
 		return aws;
 	}
 
+	/** This function returns the evaluation result of `eq` as String 
+	 * @param eq The equation to be evaluation
+	 * @return The result in String after the evualation
+	 * **/
 	public String evaluate(String eq) {
 		double result = 0;
 		double num1 = 0;

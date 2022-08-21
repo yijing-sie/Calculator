@@ -8,6 +8,11 @@
 	-fx-text-fill: white;	
 	-fx-font-size: 24;	
 }
+
+.buttontheme:pressed {
+	-fx-background-color: #4e5964;
+  }
+
 .vboxtheme {
 	-fx-spacing: 10px;	
 	-fx-min-width: 300px;
