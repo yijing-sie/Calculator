@@ -303,6 +303,19 @@ public class Main extends Application {
 					}
 				}
 			});
+
+			root.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {				
+				@Override
+				public void handle(KeyEvent ke) {
+					KeyCombination charCombo = new KeyCharacterCombination("=", KeyCombination.SHIFT_ANY);
+					if (charCombo.match(ke)) {
+						textField.setText("+");
+					} else {
+						textField.setText(ke.getText()); //getText() return String that represents the key being pressed
+					}
+					
+				}
+			});
 			Scene scene = new Scene(root,280,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
