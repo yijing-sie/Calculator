@@ -1,12 +1,18 @@
 package application;
 	
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCharacterCombination;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,6 +26,7 @@ public class Main extends Application {
 	private char[] ops1 = {'/', '*'};
 	private char[] ops2 = {'+', '-'};
 	private char[] nums = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+	
 
 	/* This function checks if input matches '*' or '/' */
 	public boolean match1(char input) {
@@ -220,7 +227,6 @@ public class Main extends Application {
 
 			TextField textField = new TextField();
 			textField.getStyleClass().add("textfieldtheme");
-			
 			// 2) Set up scene graph
 			h123.getChildren().add( digits[0] );
 			h123.getChildren().add( digits[1] );
@@ -304,14 +310,70 @@ public class Main extends Application {
 				}
 			});
 
+
+			String[] string_ops = {"+", "*", "-", "/"}; 
+			
 			root.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {				
 				@Override
 				public void handle(KeyEvent ke) {
-					KeyCombination charCombo = new KeyCharacterCombination("=", KeyCombination.SHIFT_ANY);
-					if (charCombo.match(ke)) {
-						textField.setText("+");
-					} else {
-						textField.setText(ke.getText()); //getText() return String that represents the key being pressed
+					KeyCombination plus = new KeyCharacterCombination("=", KeyCombination.SHIFT_DOWN); //for laptop keyboard
+					KeyCombination times = new KeyCharacterCombination("8", KeyCombination.SHIFT_DOWN); //for laptop keyboard
+					// check times before digit 8
+					if (times.match(ke)) {
+						char[] text_char = textField.getText().toCharArray();	
+						if (is_num(text_char[text_char.length - 1])) {
+							String previous1 = textField.getText();
+							textField.setText(previous1 + "*");
+							clear = false;
+							start = false;
+						} 
+						return;
+					}
+					for (char d: nums) {
+						if (ke.getText().charAt(0) == d) {
+							start = true;
+							String previous;
+							if (clear) {
+								previous = "";
+							} else {
+								previous = textField.getText();
+							}
+							textField.setText(previous + ke.getText());
+							clear = false;
+							return;
+						}
+					}
+					if (plus.match(ke) || ke.getCode().equals(KeyCode.ENTER)) {
+						char[] text_char = textField.getText().toCharArray();	
+						if (is_num(text_char[text_char.length - 1])) {
+							String previous1 = textField.getText();
+							textField.setText(previous1 + "+");
+							clear = false;
+							start = false;
+						} 
+						return;
+					}
+
+
+					for (String op: string_ops) {
+						if (op.equals(ke.getText())) {
+							char[] text_char = textField.getText().toCharArray();
+		
+							if (is_num(text_char[text_char.length - 1])) {
+								String previous1 = textField.getText();
+								textField.setText(previous1 + ke.getText());
+								clear = false;
+								start = false;
+							} 
+							return;
+						}
+					}
+					if (ke.getText().equals("=")) {
+						if (start) {
+							String eq = textField.getText();
+							textField.setText(evaluate(eq));
+							clear = true;
+						}
 					}
 					
 				}
