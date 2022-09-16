@@ -8,7 +8,7 @@ There are 4 features in this calculator:
 
 1) Print out intermediate steps to textfield, i.e., buttons clicked
 2) Allow user to press keys on keyboard 
-3) Allow longer sequence of operations (e.g., a + b * c / d) 
+3) Allow longer sequence of operations (e.g., a + b * c / d)  that follows **order of operations** rules
 4) Support continuous inputs from users to perform additional operations on the recent result
 5) Support Big number calculation and display the result in scientific notation (e.g., 10E11)
 6) Handle divide-by-zero exception and infinity correctly
