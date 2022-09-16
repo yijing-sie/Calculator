@@ -4,7 +4,7 @@
 * The [Main.java](src/application/Main.java) implements the main class for this JavaFX application 
 * The [application.css](src/application/application.css) configures the theme of the application
 
-There are 4 features in this calculator:
+There are **4** features in this calculator:
 
 1) Print out intermediate steps to textfield, i.e., buttons clicked
 2) Allow user to press keys on keyboard 
