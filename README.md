@@ -1,5 +1,5 @@
 # Calculator
-## A Simple calculator enables **add**, **subtract**, **multiply** or **divide** on multiple digit numbers
+## A Simple calculator enables **add**, **subtract**, **multiply** or **divide** on multiple digit numbers, following order of operations rules 
 * Double-click the [Calculator.jar](Calculator.jar) to trigger the calculator
 * The [Main.java](src/application/Main.java) implements the main class for this JavaFX application 
 * The [application.css](src/application/application.css) configures the theme of the application
